@@ -1,0 +1,221 @@
+/* Motion system. GSAP owns entrances and exits; CSS owns the immediate
+   response to hover, press, focus and selection. Every transition here uses
+   the same two curves so the interface feels like one material. */
+:root {
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in: cubic-bezier(0.55, 0, 1, 0.45);
+  --ease-swift: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-fast: 0.14s;
+  --dur: 0.22s;
+  --dur-slow: 0.36s;
+}
+
+/* While GSAP drives an element, CSS transitions must not chase its inline
+   updates. Otherwise the first frame transitions from the resting state into
+   the animation's starting state, which reads as a flash. */
+.is-animating, .is-animating::after { transition: none !important; }
+
+/* Give descenders room inside SplitText's generated masks. The mask clips at
+   its padding edge, so the padding lives on the mask, not the line. */
+.motion-line-mask { padding-bottom: 0.08em; margin-bottom: -0.08em; }
+.calc-amount { display: inline-block; font-variant-numeric: tabular-nums; }
+
+/* ---------- Navigation ---------- */
+.nav-links a {
+  transition: color var(--dur) var(--ease-swift), background-color var(--dur) var(--ease-swift);
+}
+.mobile-menu-panel nav a {
+  transition: color var(--dur) var(--ease-swift), background-color var(--dur) var(--ease-swift), padding-left var(--dur) var(--ease-out);
+}
+.mobile-menu-toggle { transition: border-color var(--dur) var(--ease-swift), background-color var(--dur) var(--ease-swift); }
+.mobile-menu-toggle:hover { border-color: var(--border-strong); background: var(--surface-soft); }
+
+/* ---------- Buttons ---------- */
+.btn {
+  transition:
+    transform var(--dur) var(--ease-out),
+    box-shadow var(--dur) var(--ease-out),
+    background-color var(--dur) var(--ease-swift),
+    border-color var(--dur) var(--ease-swift),
+    color var(--dur) var(--ease-swift),
+    opacity var(--dur) var(--ease-swift);
+}
+.btn:disabled { cursor: not-allowed; box-shadow: none; }
+.btn:hover:not(:disabled) { transform: translateY(-1px); }
+.btn:active:not(:disabled) {
+  transform: translateY(0) scale(0.98);
+  transition-duration: var(--dur-fast);
+}
+.btn-primary:active:not(:disabled) { box-shadow: 0 4px 12px rgba(40, 100, 237, 0.24); }
+.btn svg, .impact-card a svg, .service-video-arrow {
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+.impact-card a { transition: opacity var(--dur) var(--ease-swift); }
+.impact-card a:hover { opacity: 0.85; }
+.hero-slide-arrow, .hero-slide-toggle {
+  transition: color var(--dur) var(--ease-swift), background-color var(--dur) var(--ease-swift), transform var(--dur-fast) var(--ease-out);
+}
+.hero-slide-arrow:active, .hero-slide-toggle:active { transform: scale(0.92); }
+.hero-slide-dots button {
+  position: relative;
+  transition: width var(--dur-slow) var(--ease-out), background-color var(--dur) var(--ease-swift), transform var(--dur) var(--ease-out);
+}
+.hero-slide-dots button::before {
+  position: absolute;
+  inset: 0;
+  content: "";
+}
+.hero-slide-dots button:hover:not(.is-active)::after { background: #637089; }
+.feedback-modal-close, .modal-close, .service-video-close {
+  transition: background-color var(--dur) var(--ease-swift), color var(--dur) var(--ease-swift), transform var(--dur-fast) var(--ease-out);
+}
+.feedback-modal-close:active, .modal-close:active, .service-video-close:active { transform: scale(0.92); }
+#site-footer nav a { transition: color var(--dur) var(--ease-swift); }
+
+/* ---------- Cards and surfaces ---------- */
+.service-card, .impact-card, .fact-grid li, .policy-summary, .svc, .calc-box {
+  transition:
+    transform var(--dur-slow) var(--ease-out),
+    box-shadow var(--dur-slow) var(--ease-out),
+    border-color var(--dur) var(--ease-swift);
+}
+.service-card:hover { transform: translateY(-3px); }
+.impact-card:not(.primary):hover, .fact-grid li:hover { border-color: #c7d5e7; box-shadow: var(--shadow-md); }
+.svc:has(:focus-visible), .calc-box:has(:focus-visible) {
+  border-color: #91b4f7;
+  box-shadow: 0 0 0 3px rgba(40, 100, 237, 0.06), 0 16px 40px rgba(20, 42, 82, 0.08);
+}
+.service-video-link {
+  transition: background-color var(--dur) var(--ease-swift), border-color var(--dur) var(--ease-swift), transform var(--dur) var(--ease-out);
+}
+.service-video-link:active { transform: scale(0.99); }
+.service-video-thumb { overflow: hidden; }
+.service-video-thumb img { transition: transform 0.7s var(--ease-out); }
+.service-video-thumb svg { transition: transform var(--dur-slow) var(--ease-out), background-color var(--dur) var(--ease-swift); }
+.service-video-link:hover .service-video-thumb img { transform: scale(1.06); }
+.service-video-link:hover .service-video-thumb svg { transform: scale(1.1); background: rgba(255, 255, 255, 0.28); }
+.service-video-link:hover .service-video-arrow { transform: translate(2px, -2px); }
+.builder-submit-card {
+  transition: background-color var(--dur-slow) var(--ease-swift), border-color var(--dur-slow) var(--ease-swift), box-shadow var(--dur-slow) var(--ease-out);
+}
+.builder-submit-card.is-ready { box-shadow: 0 8px 32px rgba(32, 173, 104, 0.1); }
+.builder-submit-card .mini-icon { transition: transform var(--dur-slow) var(--ease-out), box-shadow var(--dur-slow) var(--ease-out); }
+.builder-submit-card.is-ready .mini-icon { box-shadow: 0 0 0 5px rgba(32, 173, 104, 0.12); }
+.gap-meter { transition: border-color var(--dur-slow) var(--ease-swift), box-shadow var(--dur-slow) var(--ease-out); }
+.gap-meter.is-met { border-color: #b9dcc7; }
+.gap-status { transition: color var(--dur) var(--ease-swift); }
+.svc-delta { transition: color var(--dur) var(--ease-swift), opacity var(--dur) var(--ease-swift); }
+.svc-delta:empty { opacity: 0; }
+
+/* ---------- Range sliders ---------- */
+input[type="range"]::-webkit-slider-thumb {
+  transition: box-shadow var(--dur) var(--ease-out), transform var(--dur) var(--ease-out);
+}
+input[type="range"]::-moz-range-thumb {
+  transition: box-shadow var(--dur) var(--ease-out), transform var(--dur) var(--ease-out);
+}
+input[type="range"]:active::-webkit-slider-thumb {
+  transform: scale(1.12);
+  box-shadow: 0 4px 14px rgba(25, 61, 143, 0.34), 0 0 0 8px rgba(40, 100, 237, 0.14);
+}
+input[type="range"]:active::-moz-range-thumb {
+  transform: scale(1.12);
+  box-shadow: 0 4px 14px rgba(25, 61, 143, 0.34), 0 0 0 8px rgba(40, 100, 237, 0.14);
+}
+.calc-input-row { transition: border-color var(--dur) var(--ease-swift), box-shadow var(--dur) var(--ease-out); }
+.calc-input-row:hover:not(:focus-within) { border-color: #aebed1; }
+
+/* ---------- Selection controls ---------- */
+.feedback-choice span {
+  transition:
+    background-color var(--dur) var(--ease-swift),
+    border-color var(--dur) var(--ease-swift),
+    color var(--dur) var(--ease-swift),
+    box-shadow var(--dur-slow) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out);
+}
+.feedback-choice:active span { transform: scale(0.97); }
+.feedback-comment textarea { transition: border-color var(--dur) var(--ease-swift), box-shadow var(--dur) var(--ease-out); }
+
+.share-style-picker button {
+  transition:
+    border-color var(--dur) var(--ease-swift),
+    box-shadow var(--dur-slow) var(--ease-out),
+    transform var(--dur) var(--ease-out);
+}
+.share-style-picker button:hover { border-color: #b8c4ad; transform: translateY(-1px); box-shadow: 0 6px 16px rgba(38, 55, 35, 0.08); }
+.share-style-picker button:active { transform: scale(0.98); transition-duration: var(--dur-fast); }
+.share-style-picker button i { transition: transform var(--dur-slow) var(--ease-out); }
+.share-style-picker button:hover i { transform: scale(1.02); }
+.share-style-picker button::after {
+  content: "✓";
+  position: absolute;
+  right: 8px;
+  bottom: 7px;
+  color: #526d46;
+  font-size: 10px;
+  opacity: 0;
+  transform: scale(0.4);
+  transform-origin: center;
+  transition: transform var(--dur-slow) var(--ease-out), opacity var(--dur) var(--ease-swift);
+}
+.share-style-picker button[aria-pressed="true"]::after { opacity: 1; transform: scale(1); }
+.share-headline-picker button {
+  transition:
+    background-color var(--dur) var(--ease-swift),
+    border-color var(--dur) var(--ease-swift),
+    color var(--dur) var(--ease-swift),
+    transform var(--dur-fast) var(--ease-out);
+}
+.share-headline-picker button:hover:not([aria-pressed="true"]) { border-color: #b8c4ad; background: #f6f8f0; color: #405437; }
+.share-headline-picker button:active { transform: scale(0.97); }
+.postcard-flip {
+  transition: background-color var(--dur) var(--ease-swift), border-color var(--dur) var(--ease-swift), transform var(--dur-fast) var(--ease-out);
+}
+.postcard-flip > span { transition: transform 0.5s var(--ease-out); }
+.postcard-flip:hover > span { transform: rotate(180deg); }
+.postcard-flip:active { transform: scale(0.98); }
+.share-link-actions button, .share-back { transition: color var(--dur) var(--ease-swift); }
+.share-link-actions button:hover, .share-back:hover { color: #2b4937; }
+
+.service-video-playlist button {
+  transition:
+    background-color var(--dur) var(--ease-swift),
+    border-color var(--dur) var(--ease-swift),
+    transform var(--dur-fast) var(--ease-out);
+}
+.service-video-playlist button:active { transform: scale(0.99); }
+.video-track-thumb img { transition: transform 0.6s var(--ease-out), opacity var(--dur-slow) var(--ease-swift); }
+.service-video-playlist button:hover .video-track-thumb img { transform: scale(1.05); }
+.service-video-playlist button[aria-current] .video-track-thumb img { opacity: 0.72; }
+.video-track-thumb svg {
+  display: block;
+  opacity: 0;
+  transform: scale(0.6);
+  transition: transform var(--dur-slow) var(--ease-out), opacity var(--dur) var(--ease-swift);
+}
+[aria-current] .video-track-thumb svg { opacity: 1; transform: scale(1); }
+.video-track-state { transition: color var(--dur) var(--ease-swift); }
+
+/* ---------- Overlays ---------- */
+.service-video-dialog::backdrop { transition: opacity var(--dur-slow) var(--ease-swift); }
+@starting-style {
+  .service-video-dialog[open]::backdrop { opacity: 0; }
+}
+.service-video-dialog.is-closing::backdrop { opacity: 0; }
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .hero-slide img,
+  .btn:hover:not(:disabled),
+  .service-card:hover,
+  .service-video-link:hover .service-video-thumb img,
+  .share-style-picker button:hover,
+  .postcard-flip:hover > span { transform: none; }
+}
+@media (hover: hover) and (pointer: fine) {
+  .mobile-menu-panel nav a:hover { padding-left: 16px; }
+}
+@media (hover: none) {
+  .service-card:hover, .share-style-picker button:hover, .btn:hover:not(:disabled) { transform: none; }
+}

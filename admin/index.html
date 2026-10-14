@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#102d3c" />
+  <title>Community Insights | City of DeLand</title>
+  <link rel="icon" href="/favicon.ico" />
+  <script type="module" src="/src/site-entry.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to dashboard</a>
+  <aside class="sidebar">
+    <a class="brand" href="/admin/"><img src="/assets/city-of-deland-seal.png" alt="" width="43" height="43" /><span><span data-dashboard-city>City of DeLand</span><small>COMMUNITY INSIGHTS</small></span></a>
+    <div class="workspace-label"><span data-dashboard-site>BUILD YOUR DELAND</span> <span>STAFF</span></div>
+    <nav aria-label="Dashboard navigation">
+      <div class="nav-group" role="group" aria-labelledby="insights-label">
+        <h2 class="nav-group-label" id="insights-label">Insights</h2>
+        <div class="nav-links">
+          <a href="#overview" data-view="overview"><span data-icon="overview"></span>Overview</a>
+          <a href="#reports" data-view="reports"><span data-icon="chart"></span>Reports &amp; insights</a>
+        </div>
+      </div>
+      <div class="nav-group" role="group" aria-labelledby="responses-label">
+        <h2 class="nav-group-label" id="responses-label">Responses</h2>
+        <div class="nav-links">
+          <a href="#submissions" data-view="submissions"><span data-icon="inbox"></span>Submissions <span id="nav-count" class="nav-count"></span></a>
+          <a href="#feedback" data-view="feedback"><span data-icon="inbox"></span>Feedback</a>
+        </div>
+      </div>
+      <div class="nav-group" id="administration-nav" role="group" aria-labelledby="administration-label" hidden>
+        <h2 class="nav-group-label" id="administration-label">Administration</h2>
+        <div class="nav-links">
+          <a href="#users" data-view="users" id="users-nav" hidden><span data-icon="users"></span>Manage users</a>
+          <a href="#content" data-view="content" id="content-nav" hidden><span data-icon="settings"></span>Site content</a>
+          <a href="#settings" data-view="settings" id="settings-nav" hidden><span data-icon="settings"></span>Site settings</a>
+        </div>
+      </div>
+    </nav>
+    <div class="sidebar-bottom">
+      <a class="public-link" href="/" target="_blank" rel="noopener noreferrer">View site <span aria-hidden="true">↗</span></a>
+      <div class="account"><div class="avatar" id="avatar">D</div><div><strong id="account-name">Signing in…</strong><small id="account-role">Staff workspace</small></div><form action="/auth/logout" method="post"><button aria-label="Sign out" title="Sign out" data-icon="logout"></button></form></div>
+    </div>
+  </aside>
+  <div class="workspace">
+    <header class="topbar"><span><span data-dashboard-site>Build Your DeLand</span> <span class="crumb">/</span> <strong id="breadcrumb">Overview</strong></span><span class="private-label"><span data-icon="lock"></span> Staff workspace</span><form class="mobile-signout" action="/auth/logout" method="post"><button class="row-open" type="submit">Sign out</button></form></header>
+    <main id="main" tabindex="-1">
+      <div class="page-heading"><div><p class="eyebrow">LISTEN. UNDERSTAND. PLAN.</p><h1 id="page-title">Community overview</h1><p id="page-description">See how people are shaping their DeLand budget.</p></div><div class="page-actions"><button class="button secondary" id="pdf-button" hidden><span data-icon="download"></span> Download PDF</button><button class="button secondary" id="export-button"><span data-icon="download"></span> Export CSV</button></div></div>
+      <div class="filter-bar" id="date-toolbar"><div class="filter-intro"><span data-icon="calendar"></span><strong>Reporting period</strong></div><label class="sr-only" for="period">Reporting period</label><select id="period"><option value="30">Last 30 days</option><option value="7">Last 7 days</option><option value="90">Last 90 days</option><option value="custom">Custom dates</option></select><div id="custom-dates" hidden><label>From <input id="date-from" type="date" required /></label><label>To <input id="date-to" type="date" required /></label><button class="button small" id="apply-dates">Apply</button></div><span id="range-label" class="range-label"></span><button class="icon-button" id="refresh-button" aria-label="Refresh dashboard" title="Refresh" data-icon="refresh"></button></div>
+      <p id="notice" role="status" class="notice" hidden></p>
+      <div id="loading" class="loading" role="status">Loading your workspace…</div>
+      <div id="content" hidden></div>
+      <footer class="main-footer"><span><span data-dashboard-city>City of DeLand</span> · Budget &amp; community priorities</span><span id="updated-label">Dates shown in Eastern Time</span></footer>
+    </main>
+  </div>
+  <dialog id="detail-dialog" aria-labelledby="detail-title"><div class="dialog-header"><div><p class="eyebrow">BUDGET SUBMISSION</p><h2 id="detail-title">Plan details</h2></div><button class="icon-button" data-close="detail-dialog" aria-label="Close details" data-icon="close"></button></div><div id="detail-content"></div></dialog>
+  <dialog id="user-dialog" aria-labelledby="user-title"><form id="user-form"><div class="dialog-header"><div><p class="eyebrow">TEAM ACCESS</p><h2 id="user-title">Add a user</h2></div><button type="button" class="icon-button" data-close="user-dialog" aria-label="Close user form" data-icon="close"></button></div><p class="muted" id="user-description">Give a colleague access to community submissions and reports.</p><label>Full name<input name="name" maxlength="100" autocomplete="name" required /></label><label>Email address<input name="email" type="email" maxlength="100" autocomplete="off" required /></label><label>Access level<select name="role"><option value="viewer">Viewer, submissions &amp; reports</option><option value="admin">Administrator, users &amp; review tools</option></select></label><label id="active-label" hidden>Account status<select name="active"><option value="true">Active</option><option value="false">Disabled</option></select></label><label><span id="password-label">Password</span><input name="password" type="password" minlength="12" maxlength="256" autocomplete="new-password" required /></label><p class="field-help" id="password-help">At least 12 characters. Share credentials with your colleague securely. No email is sent.</p><p id="user-error" class="form-error" role="alert" hidden></p><div class="dialog-actions"><button class="button secondary" type="button" data-close="user-dialog">Cancel</button><button class="button" id="save-user" type="submit">Create user</button></div></form></dialog>
+  <dialog id="delete-dialog" aria-labelledby="delete-title" aria-describedby="delete-description">
+    <form id="delete-form">
+      <div class="dialog-header"><h2 id="delete-title">Delete response?</h2><button type="button" class="icon-button" data-close="delete-dialog" aria-label="Cancel deletion" data-icon="close"></button></div>
+      <p id="delete-description"></p>
+      <p class="muted">This permanently removes the record from the dashboard and its reports. This cannot be undone.</p>
+      <p id="delete-error" class="form-error" role="alert" hidden></p>
+      <div class="dialog-actions"><button class="button secondary" type="button" data-close="delete-dialog" autofocus>Cancel</button><button class="button danger" id="confirm-delete" type="submit">Delete permanently</button></div>
+    </form>
+  </dialog>
+</body>
+</html>

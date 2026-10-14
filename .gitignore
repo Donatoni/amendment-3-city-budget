@@ -1,0 +1,15 @@
+node_modules/
+dist/
+.DS_Store
+
+# Original video masters; web-ready copies live in public/assets/videos.
+media-originals/
+
+# Local hosting configuration
+.env
+.env.local
+.env.*.local
+.dev.vars
+.dev.vars.*
+.wrangler/
+.cache/

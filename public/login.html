@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#f7f8f4" />
+  <title>Staff &amp; Reviewer Sign In | Build Your DeLand</title>
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/assets/launch.css" />
+  <script src="/assets/launch.js" defer></script>
+</head>
+<body class="login-page">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="launch-shell">
+    <header class="launch-header">
+      <a class="launch-brand" href="/" aria-label="City of DeLand, home"><img src="/assets/city-of-deland-seal.png" alt="" width="56" height="56" /><span><strong>City of DeLand</strong><small>Budget &amp; community priorities</small></span></a>
+      <a class="reviewer-link" href="/"><span aria-hidden="true">←</span> View site</a>
+    </header>
+
+    <main id="main" class="login-main">
+      <div class="login-art">
+        <img src="/assets/launch-deland-illustration.webp" alt="An illustration of DeLand’s historic architecture, leafy oaks, gardens, and fountain." width="1536" height="1024" />
+        <div><span>BUILD YOUR DELAND</span><h2>A first look at<br />what’s ahead.</h2><p>Thank you for helping shape a clearer conversation about our city’s future.</p></div>
+      </div>
+      <section class="login-panel" aria-labelledby="login-title">
+        <div class="login-lock" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="11" rx="3" /><path d="M8 10V7a4 4 0 0 1 8 0v3m-4 5v2" /></svg></div>
+        <p class="launch-eyebrow">STAFF &amp; REVIEWER ACCESS</p>
+        <h1 id="login-title">Welcome in.</h1>
+        <p class="login-description">Sign in to Build Your DeLand with your staff email or reviewer username.</p>
+        <form id="login-form" action="/auth/login" method="post">
+          <input type="hidden" name="next" value="/" />
+          <label for="username">Email or username</label>
+          <input id="username" name="username" type="text" autocomplete="username" autocapitalize="none" spellcheck="false" maxlength="100" required />
+          <label for="password">Password</label>
+          <div class="password-field"><input id="password" name="password" type="password" autocomplete="current-password" maxlength="256" required /><button id="password-toggle" type="button" aria-label="Show password" aria-pressed="false" hidden>Show</button></div>
+          <p id="login-error" class="login-error" role="alert" hidden></p>
+          <button class="login-submit" type="submit"><span>Sign in</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" /></svg></button>
+          <p id="login-status" class="login-status" role="status" aria-live="polite"></p>
+        </form>
+        <p class="login-note"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 8 3v6c0 4-8 9-8 9s-8-5-8-9V6l8-3Zm-4 9 3 3 5-6" /></svg>Private access for City staff and invited reviewers.</p>
+      </section>
+    </main>
+    <footer class="launch-footer"><span>City of DeLand · Florida</span><a href="/privacy">Privacy &amp; Public Records</a><span>Your city. Your choices. Our future.</span></footer>
+  </div>
+</body>
+</html>

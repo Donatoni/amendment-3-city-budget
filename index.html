@@ -1,0 +1,744 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f5f9ff" />
+  <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48" />
+  <link rel="icon" type="image/png" href="/favicon.png" sizes="48x48" />
+  <!-- seo:head -->
+  <link rel="preload" as="font" href="/assets/fonts/inter-latin.woff2" type="font/woff2" crossorigin />
+  <link rel="preload" as="image" href="/assets/hero-photos/tree-care.webp" imagesrcset="/assets/hero-photos/tree-care-small.webp 960w, /assets/hero-photos/tree-care.webp 1920w" imagesizes="100vw" type="image/webp" fetchpriority="high" />
+  <link rel="stylesheet" href="/src/styles.css" />
+  <!-- Load page styles before first paint, including in the Vite dev server.
+       JS-imported CSS arrives too late to size and hide the initial SVGs. -->
+  <link rel="stylesheet" href="/src/motion.css" />
+  <link rel="stylesheet" href="/src/service-videos.css" />
+  <link rel="stylesheet" href="/src/share-studio.css" />
+  <link rel="stylesheet" href="/src/civic-design.css" />
+  <link rel="stylesheet" href="/src/builder-workspace.css" />
+  <link rel="stylesheet" href="/src/calculator-design.css" />
+  <script>
+    // Entrances start hidden only when motion will run. If the motion script
+    // never reports in, the fallback reveals everything.
+    if (window.matchMedia("(prefers-reduced-motion: no-preference)").matches) {
+      document.documentElement.classList.add("motion-pending");
+      window.setTimeout(function () {
+        if (!window.__motionReady) document.documentElement.classList.remove("motion-pending");
+      }, 4000);
+    }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to main content</a>
+  <svg class="svg-sprite" aria-hidden="true" width="0" height="0" style="position:absolute;width:0;height:0;overflow:hidden">
+    <symbol id="icon-home" viewBox="0 0 24 24"><path d="m3 11 9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-9Z"/><path d="M9 21h6"/></symbol>
+    <symbol id="icon-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/><path d="m9 12 2 2 4-5"/></symbol>
+    <symbol id="icon-flame" viewBox="0 0 24 24"><path d="M12 22c4.4 0 8-3 8-7.4 0-3-1.5-5.7-4.5-8.1.2 2-1 3.5-2.2 4.3.3-3.6-1.8-6.8-5.1-8.8.1 3.2-1.8 5.2-3 7.1C4.3 10.6 4 12.4 4 14.6 4 19 7.6 22 12 22Z"/><path d="M9.5 18.8c-1.6-2.2-.4-4 1.5-5.8.1 1.6.9 2.4 1.8 3.1.7-.6 1.2-1.4 1.1-2.5 1.3 1.2 1.8 2.5 1.5 3.8-.4 1.7-1.7 2.6-3.4 2.6-1 0-1.9-.4-2.5-1.2Z"/></symbol>
+    <symbol id="icon-road" viewBox="0 0 24 24"><path d="m7 3-3 18M17 3l3 18M12 4v4M12 12v4M12 20v1"/></symbol>
+    <symbol id="icon-tree" viewBox="0 0 24 24"><path d="M12 22v-7M8 22h8M12 3l-5 7h3l-4 5h12l-4-5h3l-5-7Z"/></symbol>
+    <symbol id="icon-chart" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></symbol>
+    <symbol id="icon-building" viewBox="0 0 24 24"><path d="M4 21V5l8-3 8 3v16M8 7h1M15 7h1M8 11h1M15 11h1M8 15h1M15 15h1M2 21h20M10 21v-4h4v4"/></symbol>
+    <symbol id="icon-arrow" viewBox="0 0 24 24"><path d="M5 12h14M14 7l5 5-5 5"/></symbol>
+    <symbol id="icon-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="icon-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7h.01"/></symbol>
+  </svg>
+
+  <header id="nav">
+    <a href="#hero" class="brand" data-goto="hero" aria-label="City of DeLand future budget, back to the top">
+      <img class="city-seal" src="/assets/city-of-deland-seal.png" alt="" width="48" height="48" />
+      <span class="brand-copy">
+        <strong>City of DeLand</strong>
+        <small>Budget &amp; community priorities</small>
+      </span>
+    </a>
+    <nav class="nav-links" aria-label="Primary navigation">
+      <a href="#overview" data-goto="overview">Overview</a>
+      <a href="#services" data-goto="services">Services</a>
+      <a href="#amendment" data-goto="amendment">Amendment</a>
+      <a href="#savings" data-goto="savings">Savings</a>
+      <a href="#builder" data-goto="builder">Budget</a>
+      <a href="#faq" data-goto="faq">FAQs</a>
+      <a href="#sources" data-goto="sources">Sources</a>
+    </nav>
+    <a href="#builder" class="btn btn-primary nav-cta" data-goto="builder">
+      <span>Build your DeLand</span>
+      <span class="nav-cta-arrow"><svg aria-hidden="true"><use href="#icon-arrow"></use></svg></span>
+    </a>
+    <button class="mobile-menu-toggle" id="mobile-menu-toggle" type="button" aria-label="Open navigation menu" aria-controls="mobile-menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-budget-progress" id="nav-budget-progress" aria-hidden="true">
+      <div class="nav-budget-inner">
+        <div class="nav-budget-label"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="12"/><circle cx="16" cy="16" r="7"/><circle cx="16" cy="16" r="2"/><path d="m17 15 11-11m-6 0h6v6"/></svg><div><span>Close a $5.2M gap</span><small id="nav-budget-reduced">$0.0M gap closed</small></div></div>
+        <div class="nav-budget-track" id="nav-budget-track" role="progressbar" aria-label="Budget gap target" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span></span></div>
+        <div class="nav-budget-status" role="status" aria-live="polite" aria-atomic="true"><strong id="builder-live-status">$5.2M to go</strong><strong class="nav-budget-status-reserve" aria-hidden="true">$99.9M to go</strong><strong class="nav-budget-status-reserve" aria-hidden="true">✓ Target met</strong></div>
+      </div>
+    </div>
+    <nav class="nav-budget-actions" id="nav-budget-actions" aria-label="Completed budget actions" aria-hidden="true" inert>
+      <a href="#budget-overview">Review budget <span aria-hidden="true">↑</span></a>
+      <a href="#selected-cuts-summary">Submit budget <span aria-hidden="true">↓</span></a>
+    </nav>
+  </header>
+
+  <div class="mobile-menu" id="mobile-menu" hidden>
+    <div class="mobile-menu-backdrop" data-menu-close></div>
+    <aside class="mobile-menu-panel" aria-label="Navigation menu">
+      <div class="mobile-menu-heading"><span>YOUR CITY. YOUR PERSPECTIVE.</span><strong>Explore DeLand’s future.</strong></div>
+      <nav aria-label="Mobile navigation">
+        <a href="#overview" data-goto="overview"><span>01</span>Overview</a>
+        <a href="#services" data-goto="services"><span>02</span>Services</a>
+        <a href="#amendment" data-goto="amendment"><span>03</span>Amendment</a>
+        <a href="#savings" data-goto="savings"><span>04</span>Savings</a>
+        <a href="#builder" data-goto="builder"><span>05</span>Budget</a>
+        <a href="#faq" data-goto="faq"><span>06</span>FAQs</a>
+        <a href="#sources" data-goto="sources"><span>07</span>Sources</a>
+      </nav>
+      <a href="#builder" class="btn btn-primary btn-lg mobile-menu-cta" data-goto="builder">
+        Build the budget
+        <svg aria-hidden="true"><use href="#icon-arrow"></use></svg>
+      </a>
+      <p>Official City of DeLand resource</p>
+    </aside>
+  </div>
+
+  <div id="shared-banner" hidden>
+    <span>You're viewing a neighbor's budget. Change the selected service cuts to make it your own.</span>
+    <button id="shared-dismiss" aria-label="Dismiss shared budget message">&times;</button>
+  </div>
+
+  <main id="content" tabindex="-1">
+    <noscript><p class="section-shell no-script-note">You can read the budget overview, amendment facts, and FAQs below. Enable JavaScript to use the savings calculator, service-cut choices, videos, and feedback form.</p></noscript>
+    <section class="hero" id="hero" data-cam="hero">
+
+      <div class="section-shell hero-grid">
+        <div class="hero-copy">
+          <p class="resource-label"><span></span> Official City of DeLand resource</p>
+          <h1>A city we share.<br/> <em>A future we shape.</em></h1>
+          <p class="hero-lede">Florida’s proposed Amendment 3 could reduce DeLand’s annual budget by an estimated <strong>$5.2 million</strong>. That reduction would grow to <strong>$8.8 million</strong> once the exemption is fully in place in 2028.  See what it means for your household, explore the trade-offs, and build a budget that reflects your priorities.</p>
+          <div class="hero-actions">
+            <a href="#builder" class="btn btn-primary btn-lg" data-goto="builder">
+              Build the budget
+              <svg aria-hidden="true"><use href="#icon-arrow"></use></svg>
+            </a>
+            <a href="#amendment" class="btn btn-secondary btn-lg" data-goto="amendment">Explore the amendment <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+        <div class="hero-visual">
+      <div class="hero-slideshow" aria-label="Photos of DeLand services and community">
+        <figure class="hero-slide is-active" data-hero-slide data-hero-label="Public Works" style="--hero-y: 55%; --hero-mobile-x: 57%" aria-hidden="false">
+          <img src="/assets/hero-photos/tree-care.webp" srcset="/assets/hero-photos/tree-care-small.webp 960w, /assets/hero-photos/tree-care.webp 1920w" sizes="100vw" width="1920" height="1280" alt="Public Works crew feeding tree branches into a wood chipper beside a city truck" decoding="async" fetchpriority="high" />
+        </figure>
+        <figure class="hero-slide" data-hero-slide data-hero-label="Police Department" style="--hero-y: 42%; --hero-mobile-x: 50%" aria-hidden="true">
+          <img data-src="/assets/hero-photos/police-baseball.webp" data-srcset="/assets/hero-photos/police-baseball-small.webp 960w, /assets/hero-photos/police-baseball.webp 1920w" sizes="100vw" width="1920" height="1440" alt="A police officer on a baseball field with young players and community participants" decoding="async" fetchpriority="low" />
+        </figure>
+        <figure class="hero-slide" data-hero-slide data-hero-label="Community events" style="--hero-y: 53%; --hero-mobile-x: 61%" aria-hidden="true">
+          <img data-src="/assets/hero-photos/egg-hunt.webp" data-srcset="/assets/hero-photos/egg-hunt-small.webp 960w, /assets/hero-photos/egg-hunt.webp 1920w" sizes="100vw" width="1920" height="1440" alt="Families gathering for an outdoor egg hunt beneath large oak trees" decoding="async" fetchpriority="low" />
+        </figure>
+        <figure class="hero-slide" data-hero-slide data-hero-label="Downtown DeLand" style="--hero-y: 0%; --hero-mobile-x: 50%" aria-hidden="true">
+          <img data-src="/assets/hero-photos/courthouse-dusk.webp" data-srcset="/assets/hero-photos/courthouse-dusk-small.webp 960w, /assets/hero-photos/courthouse-dusk.webp 1920w" sizes="100vw" width="1920" height="1280" alt="The historic courthouse and its illuminated clock tower at dusk" decoding="async" fetchpriority="low" />
+        </figure>
+        <figure class="hero-slide" data-hero-slide data-hero-label="Public Works" style="--hero-y: 15%; --hero-mobile-x: 56%" aria-hidden="true">
+          <img data-src="/assets/hero-photos/public-works-outreach.webp" data-srcset="/assets/hero-photos/public-works-outreach-small.webp 960w, /assets/hero-photos/public-works-outreach.webp 1920w" sizes="100vw" width="1920" height="1440" alt="A Public Works employee helping a child explore a city truck" decoding="async" fetchpriority="low" />
+        </figure>
+        <figure class="hero-slide" data-hero-slide data-hero-label="Fire Department" style="--hero-y: 50%; --hero-mobile-x: 72%" aria-hidden="true">
+          <img data-src="/assets/hero-photos/fire-response.webp" data-srcset="/assets/hero-photos/fire-response-small.webp 960w, /assets/hero-photos/fire-response.webp 1920w" sizes="100vw" width="1920" height="1440" alt="A DeLand fire engine and aerial ladder at a smoky fire scene" decoding="async" fetchpriority="low" />
+        </figure>
+        <figure class="hero-slide" data-hero-slide data-hero-label="Parks and Recreation" style="--hero-y: 54%; --hero-mobile-x: 50%" aria-hidden="true">
+          <img data-src="/assets/hero-photos/football-field.webp" data-srcset="/assets/hero-photos/football-field-small.webp 960w, /assets/hero-photos/football-field.webp 1920w" sizes="100vw" width="1920" height="1440" alt="A football field, grandstand and stadium lights beneath a blue sky" decoding="async" fetchpriority="low" />
+        </figure>
+        <figure class="hero-slide" data-hero-slide data-hero-label="Downtown DeLand" style="--hero-y: 50%; --hero-mobile-x: 49%" aria-hidden="true">
+          <img data-src="/assets/hero-photos/deland-mural.webp" data-srcset="/assets/hero-photos/deland-mural-small.webp 960w, /assets/hero-photos/deland-mural.webp 1920w" sizes="100vw" width="1920" height="1440" alt="A colorful Greetings from DeLand Florida mural with local plants and wildlife" decoding="async" fetchpriority="low" />
+        </figure>
+        <figure class="hero-slide" data-hero-slide data-hero-label="Police Department" style="--hero-y: 48%; --hero-mobile-x: 54%" aria-hidden="true">
+          <img data-src="/assets/hero-photos/police-vehicle.webp" data-srcset="/assets/hero-photos/police-vehicle-small.webp 960w, /assets/hero-photos/police-vehicle.webp 1920w" sizes="100vw" width="1920" height="1440" alt="A child looking out from the driver seat of a City of DeLand police vehicle" decoding="async" fetchpriority="low" />
+        </figure>
+        <figure class="hero-slide" data-hero-slide data-hero-label="Public Works" style="--hero-y: 55%; --hero-mobile-x: 61%" aria-hidden="true">
+          <img data-src="/assets/hero-photos/tree-planting.webp" data-srcset="/assets/hero-photos/tree-planting-small.webp 960w, /assets/hero-photos/tree-planting.webp 1920w" sizes="100vw" width="1920" height="1440" alt="Workers tending newly planted trees in a grassy public space" decoding="async" fetchpriority="low" />
+        </figure>
+        <figure class="hero-slide" data-hero-slide data-hero-label="Community events" style="--hero-y: 36%; --hero-mobile-x: 64%" aria-hidden="true">
+          <img data-src="/assets/hero-photos/fireworks.webp" data-srcset="/assets/hero-photos/fireworks-small.webp 960w, /assets/hero-photos/fireworks.webp 1920w" sizes="100vw" width="1920" height="1459" alt="Fireworks lighting the sky above an outdoor stage and a crowd" decoding="async" fetchpriority="low" />
+        </figure>
+        <figure class="hero-slide" data-hero-slide data-hero-label="Fire Department" style="--hero-y: 0%; --hero-mobile-x: 40%" aria-hidden="true">
+          <img data-src="/assets/hero-photos/fire-outreach.webp" data-srcset="/assets/hero-photos/fire-outreach-small.webp 960w, /assets/hero-photos/fire-outreach.webp 1920w" sizes="100vw" width="1920" height="1440" alt="A child wearing a firefighter helmet beside a fire engine" decoding="async" fetchpriority="low" />
+        </figure>
+        <figure class="hero-slide" data-hero-slide data-hero-label="Parks and Recreation" style="--hero-y: 55%; --hero-mobile-x: 51%" aria-hidden="true">
+          <img data-src="/assets/hero-photos/ballpark.webp" data-srcset="/assets/hero-photos/ballpark-small.webp 960w, /assets/hero-photos/ballpark.webp 1920w" sizes="100vw" width="1920" height="1440" alt="A baseball field with a scoreboard, outfield grass and ballpark buildings" decoding="async" fetchpriority="low" />
+        </figure>
+        <figure class="hero-slide" data-hero-slide data-hero-label="Public Works" style="--hero-y: 10%; --hero-mobile-x: 42%" aria-hidden="true">
+          <img data-src="/assets/hero-photos/public-works-equipment.webp" data-srcset="/assets/hero-photos/public-works-equipment-small.webp 960w, /assets/hero-photos/public-works-equipment.webp 1920w" sizes="100vw" width="1920" height="1440" alt="A Public Works employee handling equipment beside a city work truck" decoding="async" fetchpriority="low" />
+        </figure>
+        <figure class="hero-slide" data-hero-slide data-hero-label="Downtown DeLand" style="--hero-y: 52%; --hero-mobile-x: 51%" aria-hidden="true">
+          <img data-src="/assets/hero-photos/downtown-flags.webp" data-srcset="/assets/hero-photos/downtown-flags-small.webp 960w, /assets/hero-photos/downtown-flags.webp 1536w" sizes="100vw" width="1536" height="1118" alt="American flags lining a downtown DeLand street in warm sunlight" decoding="async" fetchpriority="low" />
+        </figure>
+        <figure class="hero-slide" data-hero-slide data-hero-label="Police Department" style="--hero-y: 43%; --hero-mobile-x: 43%" aria-hidden="true">
+          <img data-src="/assets/hero-photos/police-patrol.webp" data-srcset="/assets/hero-photos/police-patrol-small.webp 960w, /assets/hero-photos/police-patrol.webp 1920w" sizes="100vw" width="1920" height="1440" alt="A police officer in the driver seat of a patrol vehicle with an onboard computer" decoding="async" fetchpriority="low" />
+        </figure>
+        <figure class="hero-slide" data-hero-slide data-hero-label="Public Works" style="--hero-y: 48%; --hero-mobile-x: 58%" aria-hidden="true">
+          <img data-src="/assets/hero-photos/tree-trimming.webp" data-srcset="/assets/hero-photos/tree-trimming-small.webp 960w, /assets/hero-photos/tree-trimming.webp 1920w" sizes="100vw" width="1920" height="1271" alt="A city tree-care crew working with a bucket truck and wood chipper" decoding="async" fetchpriority="low" />
+        </figure>
+        <figure class="hero-slide" data-hero-slide data-hero-label="Parks and Recreation" style="--hero-y: 58%; --hero-mobile-x: 66%" aria-hidden="true">
+          <img data-src="/assets/hero-photos/baseball-community.webp" data-srcset="/assets/hero-photos/baseball-community-small.webp 960w, /assets/hero-photos/baseball-community.webp 1920w" sizes="100vw" width="1920" height="1440" alt="Baseball players on the field beside a large America 250 Florida emblem" decoding="async" fetchpriority="low" />
+        </figure>
+        <figure class="hero-slide" data-hero-slide data-hero-label="Fire Department" style="--hero-y: 43%; --hero-mobile-x: 35%" aria-hidden="true">
+          <img data-src="/assets/hero-photos/firefighter-hose.webp" data-srcset="/assets/hero-photos/firefighter-hose-small.webp 960w, /assets/hero-photos/firefighter-hose.webp 1440w" sizes="100vw" width="1440" height="1079" alt="A firefighter directing a hose into the remains of a fire-damaged structure" decoding="async" fetchpriority="low" />
+        </figure>
+        <figure class="hero-slide" data-hero-slide data-hero-label="Public Works" style="--hero-y: 85%; --hero-mobile-x: 67%" aria-hidden="true">
+          <img data-src="/assets/hero-photos/bucket-truck.webp" data-srcset="/assets/hero-photos/bucket-truck-small.webp 960w, /assets/hero-photos/bucket-truck.webp 1536w" sizes="100vw" width="1536" height="1179" alt="Tree-care workers using ropes and a bucket lift in a large oak tree" decoding="async" fetchpriority="low" />
+        </figure>
+        <figure class="hero-slide" data-hero-slide data-hero-label="Fire Department" style="--hero-y: 15%; --hero-mobile-x: 60%" aria-hidden="true">
+          <img data-src="/assets/hero-photos/ladder-response.webp" data-srcset="/assets/hero-photos/ladder-response-small.webp 960w, /assets/hero-photos/ladder-response.webp 1536w" sizes="100vw" width="1536" height="1070" alt="Firefighters climbing a ladder to a roof at night" decoding="async" fetchpriority="low" />
+        </figure>
+      </div>
+
+
+        </div>
+      <div class="hero-slideshow-controls" aria-label="Hero slideshow controls">
+        <button class="hero-slide-arrow previous" id="hero-slide-prev" type="button" aria-label="Show previous image">
+          <svg aria-hidden="true"><use href="#icon-arrow"></use></svg>
+        </button>
+        <div class="hero-slide-status" aria-hidden="true">
+          <strong id="hero-slide-label">Public Works</strong>
+          <span id="hero-slide-count">01 / 21</span>
+        </div>
+        <div class="hero-slide-dots" role="group" aria-label="Choose a slideshow photo">
+          <button class="is-active" type="button" data-hero-slide-to="0" aria-label="Show photo 1: Public Works, tree care" aria-current="true"></button>
+          <button type="button" data-hero-slide-to="1" aria-label="Show photo 2: Police Department, police baseball"></button>
+          <button type="button" data-hero-slide-to="2" aria-label="Show photo 3: Community events, egg hunt"></button>
+          <button type="button" data-hero-slide-to="3" aria-label="Show photo 4: Downtown DeLand, courthouse dusk"></button>
+          <button type="button" data-hero-slide-to="4" aria-label="Show photo 5: Public Works, public works outreach"></button>
+          <button type="button" data-hero-slide-to="5" aria-label="Show photo 6: Fire Department, fire response"></button>
+          <button type="button" data-hero-slide-to="6" aria-label="Show photo 7: Parks and Recreation, football field"></button>
+          <button type="button" data-hero-slide-to="7" aria-label="Show photo 8: Downtown DeLand, deland mural"></button>
+          <button type="button" data-hero-slide-to="8" aria-label="Show photo 9: Police Department, police vehicle"></button>
+          <button type="button" data-hero-slide-to="9" aria-label="Show photo 10: Public Works, tree planting"></button>
+          <button type="button" data-hero-slide-to="10" aria-label="Show photo 11: Community events, fireworks"></button>
+          <button type="button" data-hero-slide-to="11" aria-label="Show photo 12: Fire Department, fire outreach"></button>
+          <button type="button" data-hero-slide-to="12" aria-label="Show photo 13: Parks and Recreation, ballpark"></button>
+          <button type="button" data-hero-slide-to="13" aria-label="Show photo 14: Public Works, public works equipment"></button>
+          <button type="button" data-hero-slide-to="14" aria-label="Show photo 15: Downtown DeLand, downtown flags"></button>
+          <button type="button" data-hero-slide-to="15" aria-label="Show photo 16: Police Department, police patrol"></button>
+          <button type="button" data-hero-slide-to="16" aria-label="Show photo 17: Public Works, tree trimming"></button>
+          <button type="button" data-hero-slide-to="17" aria-label="Show photo 18: Parks and Recreation, baseball community"></button>
+          <button type="button" data-hero-slide-to="18" aria-label="Show photo 19: Fire Department, firefighter hose"></button>
+          <button type="button" data-hero-slide-to="19" aria-label="Show photo 20: Public Works, bucket truck"></button>
+          <button type="button" data-hero-slide-to="20" aria-label="Show photo 21: Fire Department, ladder response"></button>
+        </div>
+        <button class="hero-slide-toggle" id="hero-slide-toggle" type="button" aria-label="Pause slideshow" aria-pressed="false">
+          <span class="pause-icon" aria-hidden="true"><i></i><i></i></span>
+          <span class="play-icon" aria-hidden="true"></span>
+        </button>
+        <button class="hero-slide-arrow next" id="hero-slide-next" type="button" aria-label="Show next image">
+          <svg aria-hidden="true"><use href="#icon-arrow"></use></svg>
+        </button>
+      </div>
+      </div>
+      <nav class="section-shell hero-bottom" aria-label="Explore this resource">
+        <a href="#amendment" data-goto="amendment"><span class="journey-number">01</span><span><small>Get informed</small>Understand the proposal</span><span class="journey-arrow" aria-hidden="true">↗</span></a>
+        <a href="#savings" data-goto="savings"><span class="journey-number">02</span><span><small>Make it personal</small>Estimate your savings</span><span class="journey-arrow" aria-hidden="true">↗</span></a>
+        <a href="#builder" data-goto="builder"><span class="journey-number">03</span><span><small>Explore the trade-offs</small>Build your city budget</span><span class="journey-arrow" aria-hidden="true">↗</span></a>
+      </nav>
+    </section>
+
+    <section class="impact-strip" id="overview" aria-labelledby="impact-title">
+      <div class="section-shell">
+        <div class="section-heading compact">
+          <div>
+            <p class="eyebrow"><span>The big picture</span></p>
+            <h2 id="impact-title">Explore a Clearer Picture by the Numbers</h2>
+          </div>
+          <p>Key figures from the proposed amendment and DeLand's FY 26/27 budget</p>
+        </div>
+        <div class="impact-grid">
+          <article class="impact-card primary">
+            <span class="card-kicker">Year 1 city impact</span>
+            <strong>$5.2M+</strong>
+            <p>The estimated year one reduction of funding for City services</p>
+            <div class="impact-visual impact-comparison" role="img" aria-label="Estimated city impact: Year 1, $5.2 million; Year 2, $8.8 million.">
+              <div><span>Year 1 <b>$5.2M</b></span><i style="--bar-size:59.09%"></i></div>
+              <div><span>Year 2 <b>$8.8M</b></span><i style="--bar-size:100%"></i></div>
+            </div>
+            <a href="#services" data-goto="services">Explore city services <svg aria-hidden="true"><use href="#icon-arrow"></use></svg></a>
+          </article>
+          <article class="impact-card">
+            <span class="card-kicker">Approval threshold</span>
+            <strong>60%</strong>
+            <p>Percentage of voters needed for Amendment 3 to pass</p>
+            <div class="impact-visual approval-visual" aria-hidden="true">
+              <div class="approval-blocks"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+              <div class="impact-scale"><span>0%</span><b>60% to pass</b><span>100%</span></div>
+            </div>
+          </article>
+          <article class="impact-card">
+            <span class="card-kicker">Homestead exemption</span>
+            <strong>$150K</strong>
+            <p>Potential non-school exemption starting in 2027</p>
+            <div class="impact-visual exemption-visual" role="img" aria-label="Proposed non-school exemptions: up to $150,000 in 2027 and $250,000 in 2028.">
+              <div><b>$150K</b><i></i><span>2027</span></div>
+              <div><b>$250K</b><i></i><span>2028</span></div>
+            </div>
+          </article>
+          <article class="impact-card">
+            <span class="card-kicker">Earliest start</span>
+            <strong>2027</strong>
+            <p>The first year the new exemption would take effect if approved</p>
+            <div class="impact-visual start-visual" aria-hidden="true">
+              <div><i></i><b>2026</b><span>Vote</span></div>
+              <div class="start-active"><i></i><b>2027</b><span>Year one</span></div>
+              <div><i></i><b>2028</b><span>Year two</span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="services-section" id="services" aria-labelledby="services-title">
+      <div class="section-shell">
+        <div class="section-heading split">
+          <div>
+            <p class="eyebrow">The services that connect us</p>
+            <h2 id="services-title">What Makes DeLand, DeLand</h2>
+          </div>
+          <p>The cost centers included in this exercise account for $41.99 million in net FY 26/27 costs. The videos below explain just some of the work each department does for our community.</p>
+        </div>
+
+
+        <div class="service-grid">
+          <article class="service-card reveal" id="tour-fire" data-cam="fire">
+            <span class="service-index">01</span>
+            <h3>Fire Department</h3>
+            <p>Fire prevention, emergency response, emergency management, firefighters, paramedics, and other personnel.</p>
+            <div class="service-total"><strong>$12.57M</strong><span>Proposed FY 26/27</span></div>
+          </article>
+          <article class="service-card reveal" id="tour-police" data-cam="police">
+            <span class="service-index">02</span>
+            <h3>Police Department</h3>
+            <p>Crime reduction, community engagement, emergency response, officers, detectives, and other personnel.</p>
+            <div class="service-total"><strong>$17.01M</strong><span>Proposed FY 26/27</span></div>
+          </article>
+          <article class="service-card reveal" id="tour-streets" data-cam="streets">
+            <span class="service-index">03</span>
+            <h3>Public Works</h3>
+            <p>Street and sidewalk maintenance, ADA features, tree protection, beautification, fleet, and facility maintenance.</p>
+            <div class="service-total"><strong>$5.55M</strong><span>Proposed FY 26/27</span></div>
+          </article>
+          <article class="service-card reveal" id="tour-parks" data-cam="parks">
+            <span class="service-index">04</span>
+            <h3>Parks and Recreation</h3>
+            <p>Events, parks and green space, event venues, youth sports, and DeLand House Museum support.</p>
+            <div class="service-total"><strong>$5.05M</strong><span>Proposed FY 26/27</span></div>
+          </article>
+          <article class="service-card reveal" id="tour-planning" data-cam="planning">
+            <span class="service-index">05</span>
+            <h3>Community Development</h3>
+            <p>Land-use planning, development regulations, economic development, business support, and project consultation.</p>
+            <figure class="service-still"><img src="/assets/hero-planning-room.webp" width="1672" height="941" loading="lazy" alt="Illustration of a planning team reviewing site plans" /><figcaption>Planning for what comes next</figcaption></figure>
+            <div class="service-total"><strong>$1.8M</strong><span>Proposed FY 26/27</span></div>
+          </article>
+          <article class="service-card service-overview reveal" aria-labelledby="service-overview-title">
+            <h3 id="service-overview-title">See the full picture</h3>
+            <p>Explore how the proposed FY 26/27 budget supports the services you use every day.</p>
+            <figure class="service-overview-chart" aria-labelledby="service-overview-caption">
+              <figcaption id="service-overview-caption">
+                <strong id="service-overview-total">$41.99M</strong>
+                <span>Net costs across these five departments</span>
+              </figcaption>
+              <div class="service-overview-bar" id="service-overview-bar" aria-hidden="true"></div>
+              <ul class="service-overview-legend" id="service-overview-legend"></ul>
+            </figure>
+            <a class="service-overview-link" href="#builder"><span>Explore the budget</span><svg aria-hidden="true"><use href="#icon-arrow"></use></svg></a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="info-section" id="amendment" data-cam="overview" aria-labelledby="amendment-title">
+      <div class="section-shell">
+        <div class="section-heading split">
+          <div>
+            <p class="eyebrow">Understanding Amendment 3</p>
+            <h2 id="amendment-title">A closer look at what could change.</h2>
+          </div>
+          <p>
+            Amendment 3 appears on the <strong>November 3, 2026</strong> statewide ballot.
+            If approved, it changes how homestead property is taxed for non-school services.
+          </p>
+        </div>
+
+        <div class="policy-layout">
+          <aside class="policy-summary reveal">
+            <span class="mini-icon blue"><svg aria-hidden="true"><use href="#icon-info"></use></svg></span>
+            <h3>A larger exemption, phased in over time</h3>
+            <p>Today's exemption is up to approximately <strong>$51,411</strong>. The proposal increases the non-school portion and lowers the assessment cap for non-homestead property.</p>
+            <div class="neutral-note">
+              <strong>Why it matters locally</strong>
+              <span>Police, fire, streets, parks, planning, and city operations rely on non-school property taxes.</span>
+            </div>
+          </aside>
+
+          <ol class="fact-grid">
+            <li class="reveal"><span>01</span><div><strong>$25,000 school-tax exemption</strong><p>The school-tax portion remains capped at $25,000.</p></div></li>
+            <li class="reveal"><span>02</span><div><strong>Up to $150,000 in 2027</strong><p>Non-school homestead exemption in the first year.</p></div></li>
+            <li class="reveal"><span>03</span><div><strong>Up to $250,000 in 2028</strong><p>Annual inflation adjustments would begin in 2029.</p></div></li>
+            <li class="reveal"><span>04</span><div><strong>Assessment cap reduced to 5%</strong><p>For non-school assessments of non-homestead property, down from 10%. This caps assessed-value growth, not tax rates.</p></div></li>
+            <li class="wide reveal"><span>05</span><div><strong>A process for future exemption increases</strong><p>The Legislature would establish a process for counties and cities to increase exemptions further. The proposal does not set a date for full elimination.</p></div></li>
+          </ol>
+        </div>
+        <p class="source-note">Eligibility depends on homestead status and Florida residency. New residents arriving in 2027 or later follow a different phase-in. Read the <a href="https://vcpa.vcgov.org/info/amendment3">Volusia County Property Appraiser’s Amendment 3 FAQ</a> for details.</p>
+      </div>
+    </section>
+
+    <section class="calculator-section" id="savings" data-cam="home" aria-labelledby="calculator-title">
+      <div class="section-shell calculator-grid">
+        <div class="calculator-copy">
+          <div>
+            <p class="eyebrow">Your home. Your potential savings.</p>
+            <h2 id="calculator-title">What Could Amendment 3 Mean for Your Household?</h2>
+          </div>
+          <div class="calculator-intro">
+            <p>This calculator shows how the proposed exemption change could affect the City portion of your property tax bill if your home qualifies. It uses a fixed assessed value and DeLand's current 6.1841-mill rate. At a $300,000 assessed value, the estimated annual savings are about $610 in 2027 and $1,228 in 2028. Your actual bill will depend on your eligibility, any other exemptions you receive, what your assessed value is in future years, and what tax rates the City adopts.</p>
+            <p>See how Amendment 3 could impact your city property taxes. Find your home or enter an assessed value to explore your estimate.</p>
+            <span class="calculator-scope"><svg aria-hidden="true"><use href="#icon-home"></use></svg>For eligible homesteads in DeLand city limits</span>
+          </div>
+        </div>
+
+        <div class="calc-box reveal">
+          <div class="calc-entry">
+            <div class="calc-card-head"><span class="calc-heading-icon" aria-hidden="true"><svg><use href="#icon-home"></use></svg></span><div><h3>Find your home</h3><p>Start with your county property record.</p></div></div>
+            <section class="property-lookup" aria-label="Property search">
+              <form id="property-search">
+                <label for="property-query">Address or parcel ID</label>
+                <div class="property-search-row">
+                  <svg class="property-search-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg>
+                  <input id="property-query" type="search" placeholder="e.g. 120 S Florida Ave" minlength="3" maxlength="120" required autocomplete="off" aria-describedby="property-help" />
+                  <button class="btn btn-primary" type="submit">Search</button>
+                </div>
+              </form>
+              <p id="property-help">From the <a href="https://vcpa.vcgov.org/search/real-property" target="_blank" rel="noopener noreferrer">Volusia County Property Appraiser ↗</a></p>
+              <p id="property-status" role="status" aria-live="polite" aria-atomic="true"></p>
+              <ul id="property-results" aria-label="Matching properties"></ul>
+              <div id="property-detail" class="property-detail" hidden></div>
+            </section>
+            <div class="property-source-flow"><div class="property-source-content">
+              <div id="property-source" class="property-source" hidden></div>
+            </div></div>
+            <div class="calc-entry-divider"><span id="calc-entry-prompt">or try an estimate</span></div>
+            <div class="calc-manual-entry">
+              <label for="home-value">Assessed home value</label>
+              <div class="calc-input-row">
+                <span class="currency">$</span>
+                <input id="home-value" type="text" inputmode="numeric" value="300,000" autocomplete="off" aria-describedby="home-value-help" />
+              </div>
+              <p id="home-value-help" class="calc-value-help">Before exemptions. Not the market or sale price.</p>
+              <div class="calc-range">
+                <input id="home-slider" type="range" min="75000" max="1000000" step="5000" value="300000" aria-label="Assessed home value" />
+                <div class="range-labels"><span>$75,000</span><span>$1,000,000</span></div>
+              </div>
+            </div>
+            <div class="calc-eligibility" id="calc-eligibility" data-status="unknown" hidden role="status" aria-live="polite" aria-atomic="true">
+              <svg aria-hidden="true"><use href="#icon-info"></use></svg>
+              <strong id="calc-eligibility-title"></strong>
+            </div>
+          </div>
+
+          <div class="calc-estimate">
+            <div class="calc-card-head"><span class="calc-heading-icon" aria-hidden="true"><svg><use href="#icon-chart"></use></svg></span><div><h3>Your DeLand taxes</h3><p>Estimated annual amounts</p></div></div>
+            <div class="calc-results" aria-live="polite" aria-atomic="true">
+              <div class="calc-result current">
+                <div><span class="calc-year">2026</span><span class="calc-result-label" id="calc-baseline-label">Modeled estimate</span></div>
+                <span class="calc-amount" id="tax-2026"><!-- seo:tax-2026 --></span>
+              </div>
+              <p id="calc-savings-condition" class="calc-savings-condition">If Amendment 3 passes and you qualify</p>
+              <table class="calc-comparison">
+                <caption id="calc-savings-title" class="sr-only">Savings &amp; city tax remaining</caption>
+                <thead><tr><th scope="col">Year</th><th scope="col">You save</th><th scope="col">You still pay</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row">2027</th><td class="calc-saving" id="save-2027"><!-- seo:savings-2027 --></td><td class="calc-remaining" id="remaining-2027"><!-- seo:remaining-2027 --></td></tr>
+                  <tr><th scope="row">2028</th><td class="calc-saving" id="save-2028"><!-- seo:savings-2028 --></td><td class="calc-remaining" id="remaining-2028"><!-- seo:remaining-2028 --></td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="calc-tax-reminder" id="calc-tax-reminder">School taxes and other charges are separate.</p>
+            <details class="calc-assumptions">
+              <summary>See the calculation &amp; assumptions</summary>
+              <div class="calc-assumptions-body">
+                <p id="calc-baseline-note">Estimated city tax with standard homestead. Search for your property to use its 2026 county tax amount.</p>
+                <p class="calc-equation-label">City tax − homestead savings ≈ tax remaining</p>
+                <p>Amounts shown are rounded to the nearest dollar.</p>
+                <dl class="calc-equations">
+                  <div><dt>2027</dt><dd id="equation-2027"><!-- seo:equation-2027 --></dd></div>
+                  <div><dt>2028</dt><dd id="equation-2028"><!-- seo:equation-2028 --></dd></div>
+                </dl>
+                <p>Proposed homestead exemptions: up to $150,000 in 2027 and $250,000 in 2028.</p>
+                <p id="calc-eligibility-description">This estimate assumes an eligible homestead. Search your address to check the county’s recorded status.</p>
+                <p id="calc-rate-description">Holds the rate and assessed value constant. Savings are annual compared with 2026, not cumulative.</p>
+                <p>Editing the assessed value clears the county record and uses a modeled estimate.</p>
+                <a id="calc-record-link" href="https://vcpa.vcgov.org/search/real-property" target="_blank" rel="noopener noreferrer">Check county records ↗</a>
+              </div>
+            </details>
+          </div>
+        </div>
+        <div class="calculator-footer">
+          <p class="fine">Future rates and eligibility may change these estimates. <a href="#methodology">Calculation assumptions</a></p>
+          <a href="#builder" class="calculator-next" data-goto="builder">Next, build your city budget <svg aria-hidden="true"><use href="#icon-arrow"></use></svg></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="builder" id="builder" data-cam="builder" aria-labelledby="builder-title">
+      <div class="section-shell builder-layout">
+        <div class="builder-head">
+          <div>
+            <p class="eyebrow">Your priorities. Your city.</p>
+            <h2 id="builder-title">A City Budget: <em>Built By You</em></h2>
+          </div>
+          <div class="builder-intro">
+            <p>Which trade-offs would you choose? Close the anticipated FY 27/28 funding gap by selecting service cuts, potential revenue, or both. You can submit when their combined annual impact closes the full $5.2 million deficit. This would only account for year one (FY 27/28) services changes. Additional cuts or fees would be necessary to reach the full $8.8 million gap in year two.</p>
+            <p>A few things to note: All services listed include personnel, materials, and operational costs. Additional necessary costs, such as Human Resources and IT support, have already been factored in for ease of use. The City's General Fund for FY 26/27 is $54 million. Part of that money is already committed to required costs like transfers, contingencies, and shared expenses. The remaining $42 million is spread across five departments. In this exercise, you’ll get to decide where you'd be comfortable cutting services to adjust to the proposed amendment. This exercise only includes departments and divisions funded by the City’s General Fund. Services funded by fees or assessments (such as Utilities and Stormwater) would not be impacted by Amendment 3, excluding them from the challenge. Figures use FY 26/27 net calculations, which already account for existing revenue streams.</p>
+
+          </div>
+        </div>
+
+        <div class="budget-dashboard" id="budget-overview" tabindex="-1">
+          <div class="gap-meter" id="gap-meter" aria-labelledby="gap-title">
+            <div class="gap-goal-copy">
+              <span class="gap-goal-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="12"/><circle cx="16" cy="16" r="7"/><circle cx="16" cy="16" r="2"/><path d="m17 15 11-11m-6 0h6v6"/></svg></span>
+              <div>
+                <span class="gap-eyebrow gap-stable-copy" role="status" aria-live="polite" aria-atomic="true"><span id="gap-eyebrow">The budget challenge</span><span class="gap-copy-reserve" aria-hidden="true">The budget challenge</span><span class="gap-copy-reserve" aria-hidden="true">✓ Target met</span></span>
+                <h3 class="gap-title gap-stable-copy"><span id="gap-title">Your goal: close a $5.2M gap.</span><span class="gap-copy-reserve" aria-hidden="true">Your goal: close a $5.2M gap.</span><span class="gap-copy-reserve" aria-hidden="true">You’ve reached the $5.2M target.</span></h3>
+                <p class="gap-instruction gap-stable-copy"><span id="gap-instruction">Choose service cuts and potential revenue below to close the gap, then review and submit your plan.</span><span class="gap-copy-reserve" aria-hidden="true">Choose service cuts and potential revenue below to close the gap, then review and submit your plan.</span><span class="gap-copy-reserve" aria-hidden="true">Target reached. Review your cuts and potential revenue, then submit your plan.</span></p>
+              </div>
+            </div>
+            <div class="gap-totals">
+              <div><span id="gap-reduced-label">Gap closed</span><strong id="gap-value">$0.0M</strong></div>
+              <div><span>Net service cuts</span><strong id="service-cut-total">$0.0M</strong></div>
+              <div><span>Potential revenue added</span><strong id="revenue-total">$0.0M</strong></div>
+              <div class="gap-remaining"><span>Gap remaining</span><strong id="gap-remaining">$5.2M</strong></div>
+            </div>
+            <div class="gap-progress">
+              <div class="gap-track" id="gap-progressbar" role="progressbar" aria-label="Progress toward the $5.2 million gap target" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="gap-fill" id="gap-fill"></div></div>
+              <div class="gap-milestones" aria-hidden="true"><span>$0 <small>Start here</small></span><span>$2.6M <small>Halfway</small></span><span>$5.2M <small>Target reached</small></span></div>
+            </div>
+
+          </div>
+
+        </div>
+        <div class="builder-controls-head" id="budget-controls" tabindex="-1">
+          <div><h3>Choose what you’d give up</h3><p>Check a service to cut its funding. Uncheck it to bring it back. <button class="builder-impact-toggle" type="button" aria-expanded="false" aria-controls="builder-impact-content"><span aria-hidden="true">▸</span> About these figures</button></p></div>
+          <span class="cost-selection-count" id="selected-cut-count" role="status" aria-live="polite" aria-atomic="true">0 service cuts selected</span>
+          <div class="builder-impact-note"><p class="builder-impact-content" id="builder-impact-content" hidden>Amounts come from the Cost Center - Everything row of the FY 26-27 Full Cost Centers workbook, rounded to cents for calculations and whole dollars for display. Existing revenues are already included in these net amounts. Trailer Park is excluded from this exercise. Potential revenue figures are estimates with the assumptions shown. Selections represent your preferences, not adopted City decisions.</p></div>
+        </div>
+        <div class="cost-centers" id="cost-centers" aria-label="Choose service cuts by department"><!-- built by JS --></div>
+        <section class="revenue-section" aria-labelledby="revenue-title">
+          <div class="builder-controls-head"><div><h3 id="revenue-title">Potential Revenue</h3><p>Select revenue options or adjust the millage slider to reduce the cuts needed. Uncheck an option or set the slider to zero to remove it.</p></div></div>
+          <div class="revenue-options" id="potential-revenues"></div>
+          <p class="revenue-note">These estimates do not change the property-tax savings calculator above. Fee and millage selections could change what households pay.</p>
+        </section>
+        <details class="selected-cuts-summary" id="selected-cuts-summary" tabindex="-1" hidden>
+          <summary>Review your cuts and potential revenue</summary>
+          <ul id="selected-cuts-list"></ul>
+        </details>
+
+        <div class="builder-submit-card" id="budget-submit" tabindex="-1">
+          <div>
+            <span class="mini-icon green"><svg aria-hidden="true"><use href="#icon-check"></use></svg></span>
+            <div>
+              <p class="builder-storage-note">Once you’ve closed the $5.2 million gap, submit your plan to the City and create a graphic you can share. You can click “reset plan” to start the exercise over.</p>
+              <p class="privacy-notice" id="budget-privacy-notice">Your plan will be saved for City review and may be subject to public disclosure under Florida law. <a href="/privacy" target="_blank" rel="noopener noreferrer">Privacy &amp; Public Records<span class="sr-only"> (opens in a new tab)</span></a></p>
+            </div>
+          </div>
+          <div class="builder-actions">
+            <button class="btn btn-secondary btn-lg" id="reset-btn">Reset plan</button>
+            <button class="btn btn-primary btn-lg" id="submit-btn" aria-describedby="budget-privacy-notice" disabled>Submit my budget <svg aria-hidden="true"><use href="#icon-arrow"></use></svg></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- seo:resources -->
+
+    <section class="closing-cta" id="feedback" aria-labelledby="feedback-title">
+      <div class="section-shell closing-card feedback-card">
+        <div class="feedback-copy">
+          <p class="eyebrow light">A better city starts with a conversation</p>
+          <h2 id="feedback-title">Was this information helpful?</h2>
+          <p>Your feedback helps the City make future budget information clearer and more useful for residents.</p>
+        </div>
+        <button class="btn btn-light btn-lg" id="feedback-open">
+          Share feedback
+          <svg aria-hidden="true"><use href="#icon-arrow"></use></svg>
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="service-video-dialog" class="service-video-dialog" aria-labelledby="service-video-title" aria-describedby="service-video-department">
+    <header class="service-video-header">
+      <div><p id="service-video-department">City services</p><h3 id="service-video-title">Inside your city</h3></div>
+      <button type="button" class="service-video-close" aria-label="Close video player" autofocus>&times;</button>
+    </header>
+    <div class="service-video-layout">
+      <div class="service-video-main">
+        <div class="service-video-stage"><video controls playsinline preload="none"></video></div>
+        <p id="service-video-status" role="status" aria-live="polite"></p>
+      </div>
+      <aside class="service-video-sidebar" aria-label="Department videos">
+        <div class="service-video-sidebar-head"><strong>In this department</strong><span id="service-video-count"></span></div>
+        <div class="service-video-playlist"></div>
+      </aside>
+    </div>
+    <footer class="service-video-footer"><img src="/assets/city-of-deland-seal.png" alt="" width="48" height="48" />City of DeLand · The people behind the services</footer>
+  </dialog>
+
+  <div id="share-modal" class="modal share-studio" hidden role="dialog" aria-modal="true" aria-labelledby="share-title" aria-describedby="share-intro">
+    <div class="modal-card share-studio-card">
+      <button class="modal-close" id="share-close" aria-label="Close sharing studio">&times;</button>
+      <div class="share-preview-area">
+        <button class="modal-close share-mobile-close" id="share-close-mobile" aria-label="Close sharing studio">&times;</button>
+        <div class="share-preview-label"><span><i></i> YOUR BUDGET POSTCARD</span><span>01 / 02</span></div>
+        <div class="postcard-perspective" id="postcard-perspective">
+          <div class="postcard-tilt" id="postcard-tilt"><div class="postcard-flipper" id="postcard-flipper">
+            <canvas id="share-canvas" width="1080" height="1350" role="img" aria-label="The front of your personalized DeLand budget postcard"></canvas>
+            <canvas id="share-details-canvas" width="1080" height="1350" role="img" aria-label="Your five department funding choices" aria-hidden="true"></canvas>
+          </div></div>
+        </div>
+        <button class="postcard-flip" id="share-flip" aria-pressed="false"><span aria-hidden="true">↻</span> Flip to your budget breakdown</button>
+        <p class="share-print-note">Preview your postcard before sharing.</p>
+      </div>
+      <div class="share-studio-controls">
+        <span class="share-ready"><svg aria-hidden="true"><use href="#icon-check"></use></svg> YOUR PLAN IS READY</span>
+        <h3 id="share-title">Share your DeLand.</h3>
+        <p id="share-intro">Choose a style and headline, then share your budget postcard.</p>
+        <p class="share-save-note" id="share-save-note"></p>
+        <fieldset class="share-style-picker"><legend><span>01</span> Choose a style</legend><div>
+          <button type="button" data-share-theme="daylight" aria-pressed="true"><i class="swatch-daylight"></i><span>Daylight</span></button>
+          <button type="button" data-share-theme="bluehour" aria-pressed="false"><i class="swatch-bluehour"></i><span>Blue hour</span></button>
+          <button type="button" data-share-theme="citrus" aria-pressed="false"><i class="swatch-citrus"></i><span>Citrus</span></button>
+        </div></fieldset>
+        <fieldset class="share-headline-picker"><legend><span>02</span> Pick a headline</legend><div>
+          <button type="button" data-share-headline="0" aria-pressed="true">My kind of DeLand.</button>
+          <button type="button" data-share-headline="1" aria-pressed="false">Small city. Big choices.</button>
+          <button type="button" data-share-headline="2" aria-pressed="false">Our city. My take.</button>
+        </div></fieldset>
+        <div class="share-export-info"><span id="share-side-label">CITY POSTCARD</span><span>PNG · 1080 × 1350</span></div>
+        <div class="share-studio-actions">
+          <button class="btn btn-primary" id="share-native">Share postcard <svg aria-hidden="true"><use href="#icon-arrow"></use></svg></button>
+          <button class="btn btn-secondary" id="share-download">Save image <span aria-hidden="true">↓</span></button>
+        </div>
+        <div class="share-link-actions"><button id="share-copy">Copy preview link</button><span aria-hidden="true">·</span><button id="share-caption">Copy caption</button></div>
+        <div class="share-status" id="share-status" role="status" aria-live="polite"></div>
+        <section class="share-image-save" id="share-image-save" hidden aria-labelledby="share-image-save-title">
+          <h4 id="share-image-save-title" tabindex="-1">Save your image</h4>
+          <p>Touch and hold the image below, then choose the save option. If your app doesn’t offer one, copy your preview link and open it in Safari or Chrome to save your image.</p>
+          <img id="share-save-image" alt="Your selected budget graphic" width="1080" height="1350" />
+        </section>
+        <div id="share-link-fallback" hidden><label for="share-url">Copy your plan link</label><input id="share-url" readonly /></div>
+        <button class="share-back" id="share-edit">← Back to my budget</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="feedback-modal" class="modal feedback-modal" hidden role="dialog" aria-modal="true" aria-labelledby="feedback-modal-title" aria-describedby="feedback-modal-intro">
+    <div class="modal-card feedback-modal-card">
+      <button class="modal-close feedback-modal-close" id="feedback-close" aria-label="Close feedback form">&times;</button>
+
+      <div class="feedback-modal-brand">
+        <img class="city-seal" src="/assets/city-of-deland-seal.png" alt="" width="48" height="48" />
+        <span><strong>City of DeLand</strong><small>Budget &amp; community priorities</small></span>
+      </div>
+
+      <div id="feedback-entry">
+        <h3 id="feedback-modal-title">Share your feedback</h3>
+        <p class="feedback-modal-intro" id="feedback-modal-intro">Was this resource useful? Let us know what we could make clearer.</p>
+
+        <form class="feedback-form" id="feedback-form">
+          <input type="checkbox" name="botcheck" hidden tabindex="-1" aria-hidden="true" style="display: none;" />
+          <fieldset class="feedback-rating">
+            <legend>Was this information helpful?</legend>
+            <div>
+              <label class="feedback-choice">
+                <input type="radio" name="helpful" value="yes" required />
+                <span>Yes</span>
+              </label>
+              <label class="feedback-choice">
+                <input type="radio" name="helpful" value="somewhat" />
+                <span>Somewhat</span>
+              </label>
+              <label class="feedback-choice">
+                <input type="radio" name="helpful" value="no" />
+                <span>No</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <label class="feedback-comment" for="feedback-comment">
+            <span>What could be clearer? <small>Optional</small></span>
+            <textarea id="feedback-comment" name="comment" rows="4" maxlength="500" placeholder="Share a suggestion" aria-describedby="feedback-privacy-notice"></textarea>
+          </label>
+
+          <p class="privacy-notice" id="feedback-privacy-notice">Your response will be saved for City review and may be subject to public disclosure under Florida law. Please do not include sensitive personal information. <a href="/privacy" target="_blank" rel="noopener noreferrer">Privacy &amp; Public Records<span class="sr-only"> (opens in a new tab)</span></a></p>
+          <div class="feedback-submit-row">
+            <button class="btn btn-primary btn-lg" id="feedback-submit" type="submit" aria-describedby="feedback-privacy-notice">
+              Share feedback
+              <svg aria-hidden="true"><use href="#icon-arrow"></use></svg>
+            </button>
+            <span id="feedback-status" role="status" aria-live="polite"></span>
+          </div>
+        </form>
+      </div>
+
+      <div class="feedback-thanks" id="feedback-thanks" hidden>
+        <span class="mini-icon green"><svg aria-hidden="true"><use href="#icon-check"></use></svg></span>
+        <h3 id="feedback-thanks-title" tabindex="-1">Thank you for your feedback.</h3>
+        <p id="feedback-thanks-description">Your response helps us make budget information clearer and more useful.</p>
+        <button class="btn btn-primary" type="button" id="feedback-done">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <footer id="site-footer">
+    <div class="section-shell footer-grid">
+      <div class="footer-identity">
+        <a class="footer-brand" href="#hero" data-goto="hero" aria-label="City of DeLand, back to the top">
+          <img class="city-seal" src="/assets/city-of-deland-seal.png" alt="" width="60" height="60" />
+          <span><strong>City of DeLand</strong><small>Budget &amp; community priorities</small></span>
+        </a>
+        <p>DeLand, Florida · Volusia County</p>
+        <form class="reviewer-session" action="/auth/logout" method="post" hidden><span>Reviewer preview</span><a href="/admin/">Staff dashboard</a><button type="submit">Sign out</button></form>
+      </div>
+      <div class="footer-connect">
+        <p>Connect with DeLand</p>
+        <nav class="footer-social" aria-label="City of DeLand social media">
+          <a href="https://www.facebook.com/CityofDeLand" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M13.5 22v-9h3l.5-3.5h-3.5V7.3c0-1 .3-1.8 1.8-1.8H17V2.4a20 20 0 0 0-2.5-.2c-2.6 0-4.4 1.6-4.4 4.6v2.7H7V13h3.1v9z"/></svg>
+            <span>Facebook</span>
+          </a>
+          <a href="https://www.instagram.com/cityofdelandfl/" target="_blank" rel="noopener noreferrer">
+            <svg class="social-outline" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle class="social-dot" cx="17.5" cy="6.5" r="1"/></svg>
+            <span>Instagram</span>
+          </a>
+          <a href="https://www.youtube.com/channel/UCzpykaWQ6en93m6UZ1-pbiw" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill-rule="evenodd" d="M21.6 5.6C21.2 4.2 19.8 4 12 4s-9.2.2-9.6 1.6C2 7 2 9.2 2 12s0 5 .4 6.4C2.8 19.8 4.2 20 12 20s9.2-.2 9.6-1.6C22 17 22 14.8 22 12s0-5-.4-6.4ZM10 8v8l6-4z"/></svg>
+            <span>YouTube</span>
+          </a>
+          <a href="https://twitter.com/CityofDeLand" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3L12 14.6 5.5 22H2.3l8.2-9.4L.8 2h6.5l5.5 6.7L18.9 2ZM17.9 20h1.7L6.3 3.9H4.5z"/></svg>
+            <span>X</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+    <div class="section-shell footer-legal">
+      <span>Informational resource, not an endorsement for or against Amendment 3.</span>
+      <span>Budget figures shown in millions · FY 2026/27 proposed budget</span>
+      <a href="/privacy">Privacy &amp; Public Records</a>
+    </div>
+  </footer>
+
+  <a class="back-to-top" href="#hero" aria-label="Back to top" title="Back to top">
+    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M12 19V5m-6 6 6-6 6 6"/></svg>
+  </a>
+
+  <script type="module" src="/src/site-entry.js"></script>
+</body>
+</html>

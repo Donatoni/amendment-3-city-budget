@@ -1,0 +1,17 @@
+export const postcardCopy = {
+  ui_postcard_headline_0_top: 'My kind of', ui_postcard_headline_0_bottom: '{{city}}.',
+  ui_postcard_headline_1_top: 'Small city.', ui_postcard_headline_1_bottom: 'Big choices.',
+  ui_postcard_headline_2_top: 'Our city.', ui_postcard_headline_2_bottom: 'My take.',
+  ui_postcard_eyebrow: 'A FUTURE BUILT BY ALL OF US',
+  ui_postcard_front_label: 'MY CITY, MY CHOICES', ui_postcard_back_label: 'THE OTHER SIDE OF THE STORY',
+  ui_postcard_stamp_top: 'ONE CITY', ui_postcard_stamp_middle: 'MANY', ui_postcard_stamp_bottom: 'POSSIBILITIES',
+  ui_postcard_art_caption: 'OUR CITY. BUILT PIECE BY PIECE.',
+  ui_postcard_budget: 'MY CITY BUDGET', ui_postcard_gap: 'GAP CLOSED', ui_postcard_revenue: 'POTENTIAL REVENUE',
+  ui_postcard_back_title_top: 'The choices', ui_postcard_back_title_bottom: 'behind my city.',
+  ui_postcard_summary: '{{total}} city budget  /  {{gap}} gap closed',
+  ui_postcard_funding: 'ANNUAL FUNDING', ui_postcard_comparison: 'MY PLAN / CHANGE FROM PROPOSED',
+  ui_postcard_no_change: 'No change', ui_postcard_revenue_summary: 'Potential revenue: {{revenue}}  /  Net service cuts: {{cuts}}',
+  ui_postcard_scale: '| Proposed funding     • Bars share a $0–{{scale}} scale',
+  ui_postcard_question: 'What would your {{city}} look like?', ui_postcard_cta: 'BUILD YOURS',
+  ui_postcard_footer: 'Personal budget proposal · {{fiscalYear}}',
+};
