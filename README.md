@@ -67,6 +67,65 @@ cities. No developer is needed for day-to-day use.
 - **You own your copy.** Updates to this repository are optional; your content
   lives in your own database and is never overwritten by a code update.
 
+## Seeing visitor numbers in Google Analytics
+
+Once a measurement ID is saved in **Site settings**, Google Analytics measures
+the public pages. Counts start from the day you add the ID; nothing is measured
+before that.
+
+**Visitors, where they come from, and where they are.** These come with Google
+Analytics automatically. In [Google Analytics](https://analytics.google.com),
+open your property and go to:
+
+- **Reports › Reports snapshot** for total visitors (shown as "Active users")
+  over the date range at the top right.
+- **Reports › Acquisition › Traffic acquisition** for where visitors came from,
+  such as search, social media, email or typing the address directly.
+- **Reports › User › User attributes › Demographic details**, then choose
+  **City** or **Region** from the table's first column, for general location.
+  Location is approximate and based on the visitor's network.
+
+**Budget challenge abandonment.** The site sends three events as a resident
+works through the budget challenge. Each is counted at most once per visit to
+the page:
+
+| Event | When it is sent |
+| --- | --- |
+| `challenge_start` | The resident first checks a cut, adds a revenue, or moves the millage slider. |
+| `challenge_target_met` | Their plan reaches the budget target. |
+| `challenge_submit` | The city's server confirms their plan was saved. Failed saves aren't counted. |
+
+If someone opens a shared plan and submits it unchanged, the earlier events are
+sent too, so "started" is never lower than "submitted." Opening a shared plan
+that already meets the target doesn't count until the resident changes
+something.
+
+To see how many residents start and then leave:
+
+1. Go to **Explore** and choose **Funnel exploration**.
+2. Under **Steps**, click the pencil icon and add three steps. For each, choose
+   **Add new condition › Event name** and enter `challenge_start`, then
+   `challenge_target_met`, then `challenge_submit`. Click **Apply**.
+3. Set the date range at the top left. The chart shows how many visitors reached
+   each step. The **Abandonment** and **Abandonment rate** rows show how many
+   left at each step; the drop from step 1 to step 3 is the total abandonment.
+4. Rename the exploration (for example, "Budget challenge funnel") so you can
+   find it again under **Explore**.
+
+Good to know:
+
+- To check that events are arriving, open **Reports › Realtime**, try the
+  challenge yourself on the live site, and look for the event names in the
+  **Event count by Event name** card. New events can take a day or two to
+  appear in the other reports.
+- Optionally, mark `challenge_submit` as a key event (**Admin › Data display ›
+  Events**, then turn on **Mark as key event**) so submissions show up in
+  standard reports alongside traffic sources.
+- Google Analytics counts are usually a little lower than the dashboard's
+  submission count, because some browsers and ad blockers block Google
+  Analytics. Use the dashboard for the number of plans received and Google
+  Analytics for the share of people who start and finish.
+
 ## Questions
 
 Contact the person at the City of DeLand who shared this with you. Technical
@@ -184,7 +243,9 @@ was never edited moves to the current wording.
   sitemap all come from published content, so nothing city-specific is baked
   into the build except the site address.
 - **Analytics.** A GA4 measurement ID saved in Site settings is added to public
-  pages only, never to previews, sign-in or the dashboard.
+  pages only, never to previews, sign-in or the dashboard. The budget challenge
+  sends funnel events through `createChallengeTracker` in `src/analytics.js`;
+  without an ID there is no `gtag` and nothing is sent.
 
 ### Calculator and property lookup
 

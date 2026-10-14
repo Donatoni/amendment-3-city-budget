@@ -26,6 +26,7 @@ import {
 import { drawShareCard, shareURL, nativeShare, downloadCard, shareCaption, prepareShareFile } from "./share.js";
 
 import { readSharedPlan } from "./share-plan.js";
+import { createChallengeTracker } from "./analytics.js";
 
 const $ = (sel) => document.querySelector(sel);
 const RANGE_THUMB_SIZE = 24;
@@ -396,9 +397,10 @@ if (sharedPlan) {
   $("#shared-banner span").textContent = uiText("ui_budget_unavailable_plan");
 }
 $("#shared-dismiss")?.addEventListener("click", () => ($("#shared-banner").hidden = true));
-const renderCostCenters = initCostCenterBuilder(costCentersEl, selectedCuts, () => renderBudget());
+const challengeTracker = createChallengeTracker();
+const renderCostCenters = initCostCenterBuilder(costCentersEl, selectedCuts, () => { challengeTracker.started(); renderBudget(); });
 
-const renderRevenues = initRevenueBuilder($("#potential-revenues"), selectedRevenue, () => renderBudget(), revenueAdjustment);
+const renderRevenues = initRevenueBuilder($("#potential-revenues"), selectedRevenue, () => { challengeTracker.started(); renderBudget(); }, revenueAdjustment);
 
 const gapFill = $("#gap-fill");
 const gapValue = $("#gap-value");
@@ -453,6 +455,7 @@ function renderBudget() {
   $(".builder-submit-card").classList.toggle("is-ready", met);
   if (met && !budgetTargetMet) {
     emphasize($(".builder-submit-card .mini-icon"));
+    challengeTracker.targetMet();
   }
   budgetTargetMet = met;
 
@@ -593,6 +596,7 @@ async function submitBudget(plan) {
         signal: AbortSignal.timeout(20000),
       });
       if (!response.ok) throw new Error(`Submission returned ${response.status}`);
+      challengeTracker.submitted();
       return uiText("ui_budget_saved");
     }
     const previous = JSON.parse(localStorage.getItem("budget-submissions") || "[]");
